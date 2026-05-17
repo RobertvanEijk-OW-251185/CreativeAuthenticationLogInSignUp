@@ -73,7 +73,7 @@ function SignUp() {
 					key="confirmPassword"
 					onPasswordChange={setConfirmPassword}
 				/>
-				<button className="signIn" onClick={handleSubmit}>
+				<button className="signUp" onClick={handleSubmit}>
 					Sign Up
 				</button>
 			</div>
