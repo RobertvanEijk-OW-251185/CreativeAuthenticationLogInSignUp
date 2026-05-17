@@ -3,7 +3,39 @@ import "./SignUp.css";
 import LoginSignupToggler from "../components/LogInSignUpToggle";
 import PasswordPicker from "../components/PasswordPicker";
 
+import { BrowserRouter, Link } from "react-router-dom";
+import { useState } from "React";
+
 function SignUp() {
+	const [fullname, setFullname] = useState("");
+	const [email, setEmail] = useState("");
+
+	// console.log(fullname);
+	// console.log(email);
+	// console.log(password);
+
+	const [password, setPassword] = useState([]);
+	const [confirmPassword, setConfirmPassword] = useState([]);
+
+	// console.log("password:", password);
+	// console.log("confirmPassword:", confirmPassword);
+
+	const [samePassword, setSamePassword] = useState(false);
+
+	const handleSubmit = () => {
+		if (password.join(",") === confirmPassword.join(",")) {
+			setSamePassword(true);
+		} else {
+			setSamePassword(false);
+		}
+
+		console.log("Name:", fullname);
+		console.log("Email:", email);
+		console.log("Password:", password);
+		console.log("Confirm Password:", confirmPassword);
+		console.log("Is Password Same:", samePassword);
+	};
+
 	return (
 		<div className="formContainer">
 			<div className="headingLine">
@@ -21,6 +53,8 @@ function SignUp() {
 				<div className="field">
 					<span className="fullname-label">Full Name</span>
 					<input
+						value={fullname}
+						onChange={(e) => setFullname(e.target.value)}
 						type="text"
 						placeholder="John Doe"
 						className="fullname-input"></input>
@@ -28,17 +62,26 @@ function SignUp() {
 				<div className="field">
 					<span className="email-label">Email</span>
 					<input
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 						type="text"
 						placeholder="you@example.com"
 						className="email-input"></input>
 				</div>
-				<PasswordPicker />
-				<PasswordPicker />
-				<button className="signIn">Sign Up</button>
+				<PasswordPicker key="password" onPasswordChange={setPassword} />
+				<PasswordPicker
+					key="confirmPassword"
+					onPasswordChange={setConfirmPassword}
+				/>
+				<button className="signIn" onClick={handleSubmit}>
+					Sign Up
+				</button>
 			</div>
 			<div className="new-user-option">
 				<span className="new-user-prompt">Already a Member?</span>
-				<button className="new">Sign in</button>
+				<Link to="../SignIn">
+					<button className="new">Sign in</button>
+				</Link>
 			</div>
 		</div>
 	);

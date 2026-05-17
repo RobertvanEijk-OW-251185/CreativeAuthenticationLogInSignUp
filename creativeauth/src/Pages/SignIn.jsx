@@ -5,6 +5,12 @@ import "./SignIn.css";
 import LoginSignupToggler from "../components/LogInSignUpToggle";
 import PasswordPicker from "../components/PasswordPicker";
 
+// import browser router
+import { BrowserRouter, Link } from "react-router-dom";
+
+// Import useState
+import { useState } from "React";
+
 function SignIn() {
 	return (
 		<div className="formContainer">
@@ -30,7 +36,9 @@ function SignIn() {
 			</div>
 			<div className="new-user-option">
 				<span className="new-user-prompt">New Here?</span>
-				<button className="new">Create an Account</button>
+				<Link to="../SignUp">
+					<button className="new">Create an Account</button>
+				</Link>
 			</div>
 		</div>
 	);
